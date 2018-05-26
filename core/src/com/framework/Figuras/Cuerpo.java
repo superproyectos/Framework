@@ -1,34 +1,44 @@
 package com.framework.Figuras;
 
+import com.badlogic.gdx.physics.box2d.Body;
+import com.badlogic.gdx.physics.box2d.FixtureDef;
+import com.badlogic.gdx.physics.box2d.PolygonShape;
 import com.badlogic.gdx.utils.Array;
 import com.framework.Figuras.Poligonos.Poligono;
+import com.framework.Figuras.TiposDeCuerpos.TipoCuerpo;
+import com.framework.Framework;
 
 public class Cuerpo
 {
-
-    public Cuerpo(Array<Poligono> elementos)
+    private Body cuerpo;
+    private TipoCuerpo tipo;
+    public Cuerpo(Array<Poligono> elementos,TipoCuerpo tipo)
     {
-
+        this.tipo=tipo;
+        crearCuerpo(elementos);
     }
 
-    /*public Body crearCuerpo(Vertices v, Vector2 position, BodyDef.BodyType bodyType)
+    private void crearCuerpo(Array<Poligono> elementos)
     {
-        BodyDef boxBodyDef = new BodyDef();
-        boxBodyDef.type = bodyType;
-        boxBodyDef.position.x = position.x/PPM;
-        boxBodyDef.position.y = position.y/PPM;
-        Body boxBody = mundo.createBody(boxBodyDef);
-        PolygonShape boxPoly = new PolygonShape();
-        boxPoly.set(a);
-
-        FixtureDef fixtureDef = new FixtureDef();
-        fixtureDef.shape = boxPoly;
-        fixtureDef.density=1;
-        fixtureDef.restitution=0.2f;
-        boxBody.createFixture(fixtureDef);
-
-        boxPoly.dispose();
-        boxBody.setUserData("as");
-        return boxBody;
-    }*/
+        cuerpo = Framework.mundo.createBody(new DefinicionCuerpo(elementos.get(0),tipo).getDefinicion());
+        for (Poligono p:elementos)
+        {
+            PolygonShape shape=new PolygonShape();
+            shape.set(p.getVertices().redimensionar(100));
+            cuerpo.createFixture(new PropiedadCuerpo(shape,5,0.2f,5).getPropiedades());
+            shape.dispose();
+        }
+    }
+    public float getX()
+    {
+        return cuerpo.getPosition().x;
+    }
+    public float getY()
+    {
+        return cuerpo.getPosition().y;
+    }
+    public float getRotacion()
+    {
+        return (float)Math.toDegrees(cuerpo.getAngle());
+    }
 }

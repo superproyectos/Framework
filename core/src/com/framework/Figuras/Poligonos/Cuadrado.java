@@ -10,7 +10,7 @@ public class Cuadrado extends PoligonoRegular
         setVertices(generarPoligonoRegular(x,y,lado*(float)Math.sqrt(2)/2,4));
         setPoligono(crearPoligono(getRelleno(),getVertices()));
         setOrigenPoligono();
-        getVertices().mostrar();
+        //getVertices().mostrar(getVertices().getVertices());
     }
 
     @Override

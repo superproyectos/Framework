@@ -8,6 +8,7 @@ import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.*;
 import com.framework.Figuras.Grupo;
+import com.framework.Figuras.GrupoFisico;
 import com.framework.Figuras.Poligonos.Cuadrado;
 
 public class Framework extends ApplicationAdapter
@@ -19,7 +20,7 @@ public class Framework extends ApplicationAdapter
 	PolygonSprite poly,seg;
 	PolygonSpriteBatch polyBatch;
 	Texture textureSolid;
-	World mundo;
+	public static World mundo;
 	Body algg;
 	ShapeRenderer sss;
 	Cuadrado cuadrado;
@@ -54,8 +55,10 @@ public class Framework extends ApplicationAdapter
 		algg=(createPhysicsObjectFromGraphics(a,new Vector2(poly.getX(),poly.getY()),BodyDef.BodyType.DynamicBody));
 		createPhysicsObjectFromGraphics(c,new Vector2(0,0),BodyDef.BodyType.StaticBody);
 		cuadrado=new Cuadrado(350,150,100,Colores.MORADO);
-		grupo=new Grupo(new Cuadrado(300,400,100,Colores.AMARILLO),
-				new Cuadrado(400,400,100,Colores.AZUL));
+		grupo=new GrupoFisico(
+		        new Cuadrado(250,400,100,Colores.AMARILLO),
+				new Cuadrado(350,400,100,Colores.AZUL),
+		        new Cuadrado(250,300,100,Colores.NARANJA));
 	}
 
 	@Override

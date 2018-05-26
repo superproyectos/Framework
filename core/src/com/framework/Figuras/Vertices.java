@@ -28,11 +28,20 @@ public final class Vertices
     }
 
 
-    public void mostrar()
+    public void mostrar(float[] vertices)
     {
         for(int i=0;i<vertices.length;i++)
         {
             System.out.print(vertices[i]+" ");
         }
+        System.out.println(" ");
+    }
+    public float [] redimensionar(float escala)
+    {
+        mostrar(vertices);
+        float aux[]=new float[vertices.length];
+        for(int i=0;i<vertices.length;i++)
+            aux[i]=vertices[i]/escala;
+        return aux;
     }
 }
