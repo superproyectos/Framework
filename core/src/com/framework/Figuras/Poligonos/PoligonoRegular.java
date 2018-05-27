@@ -9,7 +9,7 @@ public abstract class PoligonoRegular extends Poligono
     public PoligonoRegular(float x, float y,float lado, Color color)
     {
         setCentro(x,y);
-        setLado(lado);
+        setRadio(lado);
         setRelleno(new TexturaColor(color));
     }
     private float[] generaVertices(float x, float y, float radio, int n)
@@ -19,8 +19,8 @@ public abstract class PoligonoRegular extends Poligono
         float vertices[]=new float[n*2];
         for(int i=0;i<2*n;i+=2)
         {
-            vertices[i]=x+radio*(float)Math.cos(aux)-(float)Math.cos(aux)*getBorde();
-            vertices[i+1]=y+radio*(float)Math.sin(aux)-(float)Math.sin(aux)*getBorde();
+            vertices[i]=x+radio*(float)Math.cos(aux)-(float)Math.cos(aux)* getMargen();
+            vertices[i+1]=y+radio*(float)Math.sin(aux)-(float)Math.sin(aux)* getMargen();
             aux+=angulo;
         }
         return vertices;

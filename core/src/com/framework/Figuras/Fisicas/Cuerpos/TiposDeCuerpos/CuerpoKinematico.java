@@ -1,4 +1,4 @@
-package com.framework.Figuras.Fisicas.TiposDeCuerpos;
+package com.framework.Figuras.Fisicas.Cuerpos.TiposDeCuerpos;
 
 import com.badlogic.gdx.physics.box2d.BodyDef;
 

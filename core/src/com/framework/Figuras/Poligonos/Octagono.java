@@ -4,7 +4,7 @@ import com.badlogic.gdx.graphics.Color;
 
 public class Octagono extends PoligonoRegular
 {
-    /**Crea un Octágono*/
+    /**Crea un octágono*/
     public Octagono(float x,float y,float radio,Color color)
     {
         super(x,y,radio,color);

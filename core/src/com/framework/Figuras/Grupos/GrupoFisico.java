@@ -1,13 +1,13 @@
 package com.framework.Figuras.Grupos;
 
 import com.badlogic.gdx.utils.Array;
-import com.framework.Figuras.Fisicas.Cuerpo;
+import com.framework.Figuras.Fisicas.Cuerpos.CuerpoPoligono;
 import com.framework.Figuras.Poligonos.Poligono;
-import com.framework.Figuras.Fisicas.TiposDeCuerpos.CuerpoDinamico;
+import com.framework.Figuras.Fisicas.Cuerpos.TiposDeCuerpos.CuerpoDinamico;
 
 public class GrupoFisico extends Grupo
 {
-    private Cuerpo cuerpo;
+    private CuerpoPoligono cuerpoPoligono;
     public GrupoFisico(Array<Poligono> elementos)
     {
         super(elementos);
@@ -25,35 +25,35 @@ public class GrupoFisico extends Grupo
     }
     private void crearCuerpo()
     {
-        cuerpo=new Cuerpo(getElementos(),new CuerpoDinamico());
+        cuerpoPoligono =new CuerpoPoligono(getElementos(),new CuerpoDinamico());
     }
     private void crearCuerpo(float densidad,float friccion,float restitucion)
     {
-        cuerpo=new Cuerpo(getElementos(),new CuerpoDinamico(),densidad,friccion,restitucion);
+        cuerpoPoligono =new CuerpoPoligono(getElementos(),new CuerpoDinamico(),densidad,friccion,restitucion);
     }
     private void cambioPosicion()
     {
         for (Poligono p:getElementos())
         {
-            p.setPosicion(cuerpo.getX()*100,cuerpo.getY()*100);
-            p.setRotacion(cuerpo.getRotacion());
+            p.setPosicion(cuerpoPoligono.getX()*100, cuerpoPoligono.getY()*100);
+            p.setRotacion(cuerpoPoligono.getRotacion());
         }
     }
     public void setDensidad(float densidad)
     {
-        cuerpo.setDensidad(densidad);
+        cuerpoPoligono.setDensidad(densidad);
     }
     public void setFriccion(float friccion)
     {
-        cuerpo.setFriccion(friccion);
+        cuerpoPoligono.setFriccion(friccion);
     }
     public void setRebote(float restitucion)
     {
-        cuerpo.setRebote(restitucion);
+        cuerpoPoligono.setRebote(restitucion);
     }
     public void setSensor(boolean sensor)
     {
-        cuerpo.setSensor(sensor);
+        cuerpoPoligono.setSensor(sensor);
     }
     public void setPropiedades(float densidad,float friccion,float restitucion)
     {

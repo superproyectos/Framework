@@ -1,8 +1,8 @@
-package com.framework.Figuras.Fisicas;
+package com.framework.Figuras.Fisicas.Cuerpos;
 
 import com.badlogic.gdx.physics.box2d.BodyDef;
 import com.framework.Figuras.Poligonos.Poligono;
-import com.framework.Figuras.Fisicas.TiposDeCuerpos.TipoCuerpo;
+import com.framework.Figuras.Fisicas.Cuerpos.TiposDeCuerpos.TipoCuerpo;
 
 public class DefinicionCuerpo
 {

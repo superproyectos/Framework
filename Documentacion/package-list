@@ -1,7 +1,9 @@
 com.framework
 com.framework.Figuras
+com.framework.Figuras.Circulos
 com.framework.Figuras.Fisicas
-com.framework.Figuras.Fisicas.TiposDeCuerpos
+com.framework.Figuras.Fisicas.Cuerpos
+com.framework.Figuras.Fisicas.Cuerpos.TiposDeCuerpos
 com.framework.Figuras.Grupos
 com.framework.Figuras.Poligonos
 com.framework.Texturas

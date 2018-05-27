@@ -1,4 +1,4 @@
-package com.framework.Figuras.Fisicas;
+package com.framework.Figuras.Fisicas.Cuerpos;
 
 import com.badlogic.gdx.physics.box2d.FixtureDef;
 import com.badlogic.gdx.physics.box2d.PolygonShape;
@@ -18,6 +18,10 @@ public class PropiedadCuerpo
         propiedades.friction=friccion;
         propiedades.restitution=restitucion;
     }
+    public void setPropiedades(FixtureDef propiedades)
+    {
+        this.propiedades = propiedades;
+    }
     public FixtureDef getPropiedades()
     {
         return propiedades;
@@ -30,7 +34,6 @@ public class PropiedadCuerpo
     {
         propiedades.density=friccion;
     }
-
     public void setForma(PolygonShape forma)
     {
         propiedades.shape = forma;

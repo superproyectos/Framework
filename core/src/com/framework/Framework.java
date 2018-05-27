@@ -7,6 +7,7 @@ import com.badlogic.gdx.graphics.g2d.*;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.*;
+import com.framework.Figuras.Circulos.Circulo;
 import com.framework.Figuras.Fisicas.Mundo;
 import com.framework.Figuras.Grupos.Grupo;
 import com.framework.Figuras.Grupos.GrupoFisico;
@@ -49,6 +50,7 @@ public class Framework extends ApplicationAdapter
                 new Cuadrado(150,400,100,Colores.TURQUESA));
 		((GrupoFisico) grupo).setDensidad(1);
 		((GrupoFisico) grupo).setRebote(1);
+
 	}
 
 	@Override
