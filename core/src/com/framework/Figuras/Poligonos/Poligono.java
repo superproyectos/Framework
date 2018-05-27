@@ -4,18 +4,33 @@ import com.badlogic.gdx.graphics.g2d.PolygonRegion;
 import com.badlogic.gdx.graphics.g2d.PolygonSprite;
 import com.badlogic.gdx.graphics.g2d.PolygonSpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
-import com.framework.Figuras.TexturaRelleno;
-import com.framework.Figuras.Vertices;
-
-public abstract class Poligono
+import com.framework.Figuras.Dibujable;
+import com.framework.Texturas.TexturaRelleno;
+/**Polígonos que se puedan dibujar*/
+public abstract class Poligono implements Dibujable
 {
+    /**Conjunto de estructuras para formar un polígono*/
     private Vertices vertices;
+    /**Figura a dibujar*/
     private PolygonSprite poligono;
+    /**Textura de la figura*/
     TexturaRelleno relleno;
+    /**Lienzo que comparten todas las figuras*/
     public static final PolygonSpriteBatch LIENZO=new PolygonSpriteBatch();
-    private float x,y,lado;
-
-    public abstract void dibujar();
+    /**Posicion del centro del polígono*/
+    private float x,y;
+    /**Diametro de la circunferencia que circunscribe al polígono*/
+    private float lado;
+    /**Margen del polígono*/
+    private float borde=0;
+    /**Dibuja en un lienzo estático*/
+    @Override
+    public void dibujar()
+    {
+        LIENZO.begin();
+        getPoligono().draw(LIENZO);
+        LIENZO.end();
+    }
 
     public Vertices getVertices()
     {
@@ -71,11 +86,13 @@ public abstract class Poligono
     {
         this.y = y;
     }
+
     public void setCentro(float x,float y)
     {
         this.x=x;
         this.y=y;
     }
+
     public void setVertices(Vertices vertices)
     {
         this.vertices=vertices;
@@ -99,5 +116,15 @@ public abstract class Poligono
     public void setRotacion(float grados)
     {
         poligono.setRotation(grados);
+    }
+
+    public float getBorde()
+    {
+        return borde;
+    }
+
+    public void setBorde(float borde)
+    {
+        this.borde = borde;
     }
 }

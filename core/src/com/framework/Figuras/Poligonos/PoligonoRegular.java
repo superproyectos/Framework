@@ -1,23 +1,17 @@
 package com.framework.Figuras.Poligonos;
 
 import com.badlogic.gdx.graphics.Color;
-import com.framework.Figuras.TexturaColor;
-import com.framework.Figuras.Vertices;
+import com.framework.Texturas.TexturaColor;
 
 
 public abstract class PoligonoRegular extends Poligono
 {
-    public PoligonoRegular()
-    {
-
-    }
     public PoligonoRegular(float x, float y,float lado, Color color)
     {
         setCentro(x,y);
         setLado(lado);
         setRelleno(new TexturaColor(color));
     }
-
     private float[] generaVertices(float x, float y, float radio, int n)
     {
         double angulo=2*Math.PI/n;
@@ -25,8 +19,8 @@ public abstract class PoligonoRegular extends Poligono
         float vertices[]=new float[n*2];
         for(int i=0;i<2*n;i+=2)
         {
-            vertices[i]=x+radio*(float)Math.cos(aux);
-            vertices[i+1]=y+radio*(float)Math.sin(aux);
+            vertices[i]=x+radio*(float)Math.cos(aux)-(float)Math.cos(aux)*getBorde();
+            vertices[i+1]=y+radio*(float)Math.sin(aux)-(float)Math.sin(aux)*getBorde();
             aux+=angulo;
         }
         return vertices;
@@ -44,10 +38,9 @@ public abstract class PoligonoRegular extends Poligono
     }
     public Vertices generarPoligonoRegular(float x, float y, float radio, int nLados)
     {
-        if(nLados>0)
+        if(nLados>2&&nLados<9)
         {
             float vertices[]= generaVertices(x,y,radio,nLados);
-
             short triangulos[]=generaTriangulos(vertices.length);
             return new Vertices(vertices,triangulos);
         }

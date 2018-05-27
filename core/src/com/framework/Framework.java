@@ -7,9 +7,11 @@ import com.badlogic.gdx.graphics.g2d.*;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.*;
-import com.framework.Figuras.Grupo;
-import com.framework.Figuras.GrupoFisico;
+import com.framework.Figuras.Fisicas.Mundo;
+import com.framework.Figuras.Grupos.Grupo;
+import com.framework.Figuras.Grupos.GrupoFisico;
 import com.framework.Figuras.Poligonos.Cuadrado;
+import com.framework.Texturas.Colores;
 
 public class Framework extends ApplicationAdapter
 {
@@ -36,29 +38,17 @@ public class Framework extends ApplicationAdapter
 		camara.setToOrtho(false,Gdx.graphics.getWidth()/PPM,Gdx.graphics.getHeight()/PPM);
 		camara.position.set(Gdx.graphics.getWidth()/2,Gdx.graphics.getHeight()/2,0);
 		camaraBordes=new Box2DDebugRenderer();
-		Pixmap pix = new Pixmap(1, 1, Pixmap.Format.RGBA8888);
-		pix.setColor(Color.BLUE); // DE is red, AD is green and BE is blue.
-		pix.fill();
-		textureSolid = new Texture(pix);
-		pix.setColor(Color.RED); // DE is red, AD is green and BE is blue.
-		pix.fill();
-		PolygonRegion polyReg = new PolygonRegion(new TextureRegion(textureSolid),
-				b, new short[] {
-				0, 1, 2,         // Two triangles using vertex indices.
-				0, 2, 3          // Take care of the counter-clockwise direction.
-		});
-		sss=new ShapeRenderer();
-		poly = new PolygonSprite(polyReg);
-		poly.setOrigin(poly.getX(), poly.getY());
-		polyBatch = new PolygonSpriteBatch();
-		mundo=new World(new Vector2(0,-1f),true);
-		algg=(createPhysicsObjectFromGraphics(a,new Vector2(poly.getX(),poly.getY()),BodyDef.BodyType.DynamicBody));
+		mundo= Mundo.MUNDO;
+		mundo.setGravity(new Vector2(0,-5));
 		createPhysicsObjectFromGraphics(c,new Vector2(0,0),BodyDef.BodyType.StaticBody);
 		cuadrado=new Cuadrado(350,150,100,Colores.MORADO);
 		grupo=new GrupoFisico(
 		        new Cuadrado(250,400,100,Colores.AMARILLO),
 				new Cuadrado(350,400,100,Colores.AZUL),
-		        new Cuadrado(250,300,100,Colores.NARANJA));
+		        new Cuadrado(250,300,100,Colores.NARANJA),
+                new Cuadrado(150,400,100,Colores.TURQUESA));
+		((GrupoFisico) grupo).setDensidad(1);
+		((GrupoFisico) grupo).setRebote(1);
 	}
 
 	@Override
@@ -69,7 +59,7 @@ public class Framework extends ApplicationAdapter
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 		Gdx.gl.glEnable(GL20.GL_BLEND);
 		//Gdx.gl.glBlendFunc(GL20.GL_SRC_ALPHA, GL20.GL_ONE_MINUS_SRC_ALPHA);
-		polyBatch.begin();
+		/*polyBatch.begin();
 		poly.draw(polyBatch);
 		polyBatch.end();
 		//poly.setOrigin(poly.getX(),poly.getY());
@@ -81,7 +71,7 @@ public class Framework extends ApplicationAdapter
 		cuadrado.setRotacion((float)Math.toDegrees(algg.getAngle()));
 	cuadrado.setPosicion(algg.getPosition().x*PPM,algg.getPosition().y*PPM);
 		cuadrado.dibujar();
-		//poly.rotate(1.1f);
+		//poly.rotate(1.1f);*/
         camaraBordes.render(mundo,camara.combined);
         grupo.dibujar();
 	}
