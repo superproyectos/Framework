@@ -1,5 +1,8 @@
 package com.framework.Figuras;
 
+import com.badlogic.gdx.Graphics;
+import com.badlogic.gdx.math.Vector2;
+
 /**Figuras con la capacidad de dibujarse*/
 
 public abstract class Figura implements Dibujable
@@ -79,4 +82,8 @@ public abstract class Figura implements Dibujable
     {
         this.radio = radio;
     }
+
+    /** Obtiene la posición relativa de la figura respecto a la cámara*/
+
+    public abstract Vector2 getPosicionRelativa();
 }

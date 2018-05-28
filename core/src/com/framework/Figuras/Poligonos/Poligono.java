@@ -1,10 +1,11 @@
 package com.framework.Figuras.Poligonos;
 
+import com.badlogic.gdx.Graphics;
 import com.badlogic.gdx.graphics.g2d.PolygonRegion;
 import com.badlogic.gdx.graphics.g2d.PolygonSprite;
 import com.badlogic.gdx.graphics.g2d.PolygonSpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
-import com.framework.Figuras.Dibujable;
+import com.badlogic.gdx.math.Vector2;
 import com.framework.Figuras.Figura;
 import com.framework.Texturas.TexturaRelleno;
 
@@ -27,16 +28,6 @@ public abstract class Poligono extends Figura
     /**Textura de la figura*/
 
     TexturaRelleno relleno;
-
-    /**Dibuja en un lienzo estático*/
-
-    @Override
-    public void dibujar()
-    {
-        LIENZO.begin();
-        poligono.draw(LIENZO);
-        LIENZO.end();
-    }
 
     /**Retorna la estuctura que conforma al polígono*/
 
@@ -109,4 +100,21 @@ public abstract class Poligono extends Figura
     {
         poligono.setRotation(grados);
     }
+
+    @Override
+    public Vector2 getPosicionRelativa()
+    {
+        return new Vector2(poligono.getX(),poligono.getY());
+    }
+
+    /**Dibuja en un lienzo estático*/
+
+    @Override
+    public void dibujar()
+    {
+        LIENZO.begin();
+        poligono.draw(LIENZO);
+        LIENZO.end();
+    }
+
 }

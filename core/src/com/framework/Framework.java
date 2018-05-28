@@ -8,10 +8,16 @@ import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.*;
 import com.framework.Figuras.Circulos.Circulo;
+import com.framework.Figuras.Circulos.CirculoFisico;
+import com.framework.Figuras.Fisicas.Cuerpos.Colisiones.Contacto;
+import com.framework.Figuras.Fisicas.Cuerpos.TiposDeCuerpos.CuerpoEstatico;
 import com.framework.Figuras.Fisicas.Mundo;
 import com.framework.Figuras.Grupos.Grupo;
 import com.framework.Figuras.Grupos.GrupoFisico;
 import com.framework.Figuras.Poligonos.Cuadrado;
+import com.framework.Figuras.Poligonos.Heptagono;
+import com.framework.Figuras.Poligonos.Hexagono;
+import com.framework.Figuras.Poligonos.Pentagono;
 import com.framework.Texturas.Colores;
 
 public class Framework extends ApplicationAdapter
@@ -28,6 +34,7 @@ public class Framework extends ApplicationAdapter
 	ShapeRenderer sss;
 	Cuadrado cuadrado;
 	Grupo grupo;
+	Circulo cir;
 	float a[]={2,2,3,2, 3, 1, 2, 1,3,1,4,1,4,2,3,2};
 
 	float b[]={200, 200,300, 200, 300, 100, 200, 100};
@@ -40,17 +47,20 @@ public class Framework extends ApplicationAdapter
 		camara.position.set(Gdx.graphics.getWidth()/2,Gdx.graphics.getHeight()/2,0);
 		camaraBordes=new Box2DDebugRenderer();
 		mundo= Mundo.MUNDO;
+
 		mundo.setGravity(new Vector2(0,-5));
 		createPhysicsObjectFromGraphics(c,new Vector2(0,0),BodyDef.BodyType.StaticBody);
 		cuadrado=new Cuadrado(350,150,100,Colores.MORADO);
 		grupo=new GrupoFisico(
 		        new Cuadrado(250,400,100,Colores.AMARILLO),
-				new Cuadrado(350,400,100,Colores.AZUL),
-		        new Cuadrado(250,300,100,Colores.NARANJA),
-                new Cuadrado(150,400,100,Colores.TURQUESA));
+				new Pentagono(350,400,50,Colores.AZUL),
+		        new Hexagono(250,300,50,Colores.NARANJA),
+                new Heptagono(150,400,50,Colores.TURQUESA));
+
 		((GrupoFisico) grupo).setDensidad(1);
 		((GrupoFisico) grupo).setRebote(1);
-
+		cir=new CirculoFisico(100,450,30);
+		((CirculoFisico) cir).setDensidad(15);
 	}
 
 	@Override
@@ -76,6 +86,7 @@ public class Framework extends ApplicationAdapter
 		//poly.rotate(1.1f);*/
         camaraBordes.render(mundo,camara.combined);
         grupo.dibujar();
+        cir.dibujar();
 	}
 	private Body createPhysicsObjectFromGraphics(float a[], Vector2 position, BodyDef.BodyType bodyType)
 	{

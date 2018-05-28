@@ -2,6 +2,7 @@ package com.framework.Figuras.Circulos;
 
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
+import com.badlogic.gdx.math.Vector2;
 import com.framework.Figuras.Figura;
 
 public class Circulo extends Figura
@@ -30,5 +31,11 @@ public class Circulo extends Figura
         LIENZO.begin(ShapeRenderer.ShapeType.Filled);
             LIENZO.circle(getX(),getY(),getRadio());
         LIENZO.end();
+    }
+
+    @Override
+    public Vector2 getPosicionRelativa()
+    {
+        return new Vector2(getX(),getY());
     }
 }

@@ -6,6 +6,6 @@ public class CuerpoEstatico extends TipoCuerpo
 {
     public CuerpoEstatico()
     {
-        setTipo(BodyDef.BodyType.StaticBody);
+        super(BodyDef.BodyType.StaticBody);
     }
 }

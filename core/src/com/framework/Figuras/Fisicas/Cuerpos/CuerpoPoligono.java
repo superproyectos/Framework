@@ -15,7 +15,6 @@ public class CuerpoPoligono extends Cuerpo
         this.elementos=new Array<Poligono>();
         elementos.add(elemento);
         setTipo(tipoCuerpo);
-        setPropiedad(new PropiedadCuerpo());
         setMundo(Mundo.MUNDO);
         crearCuerpo();
     }
@@ -36,7 +35,12 @@ public class CuerpoPoligono extends Cuerpo
         setMundo(Mundo.MUNDO);
         crearCuerpo();
     }
-
+    private PolygonShape crearForma(Poligono p)
+    {
+        PolygonShape shape=new PolygonShape();
+        shape.set(p.getVertices().redimensionar(100));
+        return shape;
+    }
     @Override
     public void crearCuerpo()
     {
@@ -50,11 +54,6 @@ public class CuerpoPoligono extends Cuerpo
 
     }
 
-    private PolygonShape crearForma(Poligono p)
-    {
-        PolygonShape shape=new PolygonShape();
-        shape.set(p.getVertices().redimensionar(100));
-        return shape;
-    }
+
 
 }

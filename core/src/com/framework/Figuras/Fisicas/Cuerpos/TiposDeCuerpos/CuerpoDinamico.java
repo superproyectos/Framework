@@ -6,6 +6,6 @@ public class CuerpoDinamico extends TipoCuerpo
 {
     public CuerpoDinamico()
     {
-        setTipo(BodyDef.BodyType.DynamicBody);
+        super(BodyDef.BodyType.DynamicBody);
     }
 }

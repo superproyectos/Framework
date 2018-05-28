@@ -6,6 +6,6 @@ public class CuerpoKinematico extends TipoCuerpo
 {
     public CuerpoKinematico()
     {
-        setTipo(BodyDef.BodyType.KinematicBody);
+        super(BodyDef.BodyType.KinematicBody);
     }
 }

@@ -2,6 +2,7 @@ package com.framework.Figuras.Fisicas.Cuerpos;
 
 import com.badlogic.gdx.physics.box2d.FixtureDef;
 import com.badlogic.gdx.physics.box2d.PolygonShape;
+import com.badlogic.gdx.physics.box2d.Shape;
 
 public class PropiedadCuerpo
 {
@@ -10,7 +11,7 @@ public class PropiedadCuerpo
     {
         propiedades=new FixtureDef();
     }
-    public PropiedadCuerpo(PolygonShape shape,float densidad,float friccion,float restitucion)
+    public PropiedadCuerpo(Shape shape, float densidad, float friccion, float restitucion)
     {
         propiedades=new FixtureDef();
         propiedades.shape=shape;
@@ -34,7 +35,7 @@ public class PropiedadCuerpo
     {
         propiedades.density=friccion;
     }
-    public void setForma(PolygonShape forma)
+    public void setForma(Shape forma)
     {
         propiedades.shape = forma;
     }
