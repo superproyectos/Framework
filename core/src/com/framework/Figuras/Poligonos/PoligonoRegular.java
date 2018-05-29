@@ -3,15 +3,22 @@ package com.framework.Figuras.Poligonos;
 import com.badlogic.gdx.graphics.Color;
 import com.framework.Texturas.TexturaColor;
 
+/**Polígonos regulares*/
 
 public abstract class PoligonoRegular extends Poligono
 {
+
+    /**Establecer coordemnadas y relleno*/
+
     public PoligonoRegular(float x, float y,float lado, Color color)
     {
         setCentro(x,y);
         setRadio(lado);
         setRelleno(new TexturaColor(color));
     }
+
+    /**Crea vértices inscritos en un círculo*/
+
     private float[] generaVertices(float x, float y, float radio, int n)
     {
         double angulo=2*Math.PI/n;
@@ -25,6 +32,9 @@ public abstract class PoligonoRegular extends Poligono
         }
         return vertices;
     }
+
+    /**Une cada tres vértices para formar un polígono*/
+
     private short[] generaTriangulos(int longitud)
     {
         short triangulos[]=new short[3*(longitud/2-2)];
@@ -36,6 +46,9 @@ public abstract class PoligonoRegular extends Poligono
         }
         return triangulos;
     }
+
+    /**Genera un polígono regular de 3 a 8 vértices*/
+
     public Vertices generarPoligonoRegular(float x, float y, float radio, int nLados)
     {
         if(nLados>2&&nLados<9)

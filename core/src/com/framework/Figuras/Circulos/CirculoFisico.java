@@ -2,6 +2,7 @@ package com.framework.Figuras.Circulos;
 
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.physics.box2d.CircleShape;
+import com.framework.Camara;
 import com.framework.Figuras.Fisicas.Cuerpos.CuerpoCircular;
 import com.framework.Figuras.Fisicas.Cuerpos.PropiedadCuerpo;
 import com.framework.Figuras.Fisicas.Cuerpos.TiposDeCuerpos.CuerpoDinamico;
@@ -26,7 +27,7 @@ public class CirculoFisico extends Circulo implements PropiedadesFisicas
     }
     private Circulo redimensionar()
     {
-        Circulo aux=new Circulo(getX()/100,getY()/100,getRadio()/100);
+        Circulo aux=new Circulo(getX()/Camara.getPPM(),getY()/Camara.getPPM(),getRadio()/Camara.getPPM());
         return aux;
     }
     public TipoCuerpo getTipoCuerpo()

@@ -18,4 +18,9 @@ public class Colores
     {
         return new Color(r/255f,g/255f,b/255f,a);
     }
+    public static final Color degradado(Color color,float degradado)
+    {
+        degradado/=100;
+        return new Color(color.r-degradado,color.g-degradado,color.b-degradado,color.a);
+    }
 }

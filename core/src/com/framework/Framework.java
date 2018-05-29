@@ -23,8 +23,6 @@ import com.framework.Texturas.Colores;
 public class Framework extends ApplicationAdapter
 {
 	final float PPM =100;
-	private OrthographicCamera camara;
-	private Box2DDebugRenderer camaraBordes;
 	private boolean debug;
 	PolygonSprite poly,seg;
 	PolygonSpriteBatch polyBatch;
@@ -35,6 +33,9 @@ public class Framework extends ApplicationAdapter
 	Cuadrado cuadrado;
 	Grupo grupo;
 	Circulo cir;
+	Sprite sprite;
+	Batch batch;
+	Camara camaras;
 	float a[]={2,2,3,2, 3, 1, 2, 1,3,1,4,1,4,2,3,2};
 
 	float b[]={200, 200,300, 200, 300, 100, 200, 100};
@@ -42,10 +43,8 @@ public class Framework extends ApplicationAdapter
 	@Override
 	public void create ()
 	{
-		camara=new OrthographicCamera();
-		camara.setToOrtho(false,Gdx.graphics.getWidth()/PPM,Gdx.graphics.getHeight()/PPM);
-		camara.position.set(Gdx.graphics.getWidth()/2,Gdx.graphics.getHeight()/2,0);
-		camaraBordes=new Box2DDebugRenderer();
+		Camara.setPPM(PPM);
+		camaras=new Camara();
 		mundo= Mundo.MUNDO;
 
 		mundo.setGravity(new Vector2(0,-5));
@@ -59,8 +58,11 @@ public class Framework extends ApplicationAdapter
 
 		((GrupoFisico) grupo).setDensidad(1);
 		((GrupoFisico) grupo).setRebote(1);
+		((GrupoFisico) grupo).setTipoCuerpo(new CuerpoEstatico());
 		cir=new CirculoFisico(100,450,30);
 		((CirculoFisico) cir).setDensidad(15);
+		sprite=new Sprite(new Cuadrado(250,100,100,Colores.AMARILLO).getRelleno().getTextura()); //Used for drawing 2D sprites.
+	    batch=new SpriteBatch();
 	}
 
 	@Override
@@ -70,7 +72,7 @@ public class Framework extends ApplicationAdapter
         Gdx.gl.glClearColor(120/255f, 40/255f, 150/255f, 1);
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 		Gdx.gl.glEnable(GL20.GL_BLEND);
-		//Gdx.gl.glBlendFunc(GL20.GL_SRC_ALPHA, GL20.GL_ONE_MINUS_SRC_ALPHA);
+		Gdx.gl.glBlendFunc(GL20.GL_SRC_ALPHA, GL20.GL_ONE_MINUS_SRC_ALPHA);
 		/*polyBatch.begin();
 		poly.draw(polyBatch);
 		polyBatch.end();
@@ -84,9 +86,14 @@ public class Framework extends ApplicationAdapter
 	cuadrado.setPosicion(algg.getPosition().x*PPM,algg.getPosition().y*PPM);
 		cuadrado.dibujar();
 		//poly.rotate(1.1f);*/
-        camaraBordes.render(mundo,camara.combined);
+		Gdx.gl.glActiveTexture(GL20.GL_TEXTURE0);
+        //camaraBordes.render(mundo,camara.combined);
+		camaras.modoDebug(mundo);
         grupo.dibujar();
         cir.dibujar();
+		batch.begin();
+			sprite.draw(batch);
+		batch.end();
 	}
 	private Body createPhysicsObjectFromGraphics(float a[], Vector2 position, BodyDef.BodyType bodyType)
 	{

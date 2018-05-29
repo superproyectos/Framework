@@ -1,10 +1,6 @@
 package com.framework.Figuras.Poligonos;
 
-import com.badlogic.gdx.Graphics;
-import com.badlogic.gdx.graphics.g2d.PolygonRegion;
-import com.badlogic.gdx.graphics.g2d.PolygonSprite;
-import com.badlogic.gdx.graphics.g2d.PolygonSpriteBatch;
-import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.badlogic.gdx.graphics.g2d.*;
 import com.badlogic.gdx.math.Vector2;
 import com.framework.Figuras.Figura;
 import com.framework.Texturas.TexturaRelleno;
@@ -27,7 +23,7 @@ public abstract class Poligono extends Figura
 
     /**Textura de la figura*/
 
-    TexturaRelleno relleno;
+    private TexturaRelleno relleno;
 
     /**Retorna la estuctura que conforma al polígono*/
 
@@ -73,9 +69,11 @@ public abstract class Poligono extends Figura
 
     /**Crear polígono*/
 
-    public PolygonSprite crearPoligono(TexturaRelleno color,Vertices vertices)
+    public PolygonSprite crearPoligono(TexturaRelleno relleno,Vertices vertices)
     {
-        return new PolygonSprite(new PolygonRegion(new TextureRegion(color.getTextura()), vertices.getVertices(), vertices.getTriangulos()));
+        return new PolygonSprite(new PolygonRegion(new TextureRegion(relleno.getTextura(),0,0,
+                relleno.getTextura().getWidth(),
+                relleno.getRelleno().getHeight()), vertices.getVertices(), vertices.getTriangulos()));
     }
 
     /**Establecer origen de rotación del polígono*/
@@ -89,6 +87,7 @@ public abstract class Poligono extends Figura
     }
 
     /**Establecer posición del polígono*/
+
     public void setPosicion(float x,float y)
     {
         poligono.setPosition(x,y);

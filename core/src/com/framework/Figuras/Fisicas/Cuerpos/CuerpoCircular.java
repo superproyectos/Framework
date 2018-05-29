@@ -4,8 +4,11 @@ import com.badlogic.gdx.physics.box2d.CircleShape;
 import com.framework.Figuras.Circulos.Circulo;
 import com.framework.Figuras.Fisicas.Cuerpos.TiposDeCuerpos.TipoCuerpo;
 
+/**Crea un cuerpo circular*/
+
 public class CuerpoCircular extends Cuerpo
 {
+
     private Circulo circulo;
     public CuerpoCircular(Circulo circulo, TipoCuerpo tipoCuerpo)
     {
